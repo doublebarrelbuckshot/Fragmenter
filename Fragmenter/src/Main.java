@@ -21,6 +21,8 @@ public class Main {
 		
 		String line;
 		BufferedReader in;
+		
+		ArrayList<String> result = new ArrayList<String>();
 
 		String strVersion = "4";
 		String strIHL = "5";
@@ -76,7 +78,7 @@ public class Main {
 					String data = line.substring(start, end); 
 					
 					String toPrint = packageFrame(data, hp);
-					
+					result.add(toPrint);
 					System.out.println("Frame: " + toPrint);
 					if((remainder == 0 ) && (i == numberFrames -1))
 					{
@@ -98,6 +100,7 @@ public class Main {
 					hp.setiTotalLength(remainder/2 + 20);
 					String data = line.substring(start, start + remainder);
 					String toPrint = packageFrame(data, hp);
+					result.add(toPrint);
 					System.out.println("Frame: " + toPrint);
 				}
 				//REMOVE ALL SPACES FOR PROCESSING
@@ -111,6 +114,25 @@ public class Main {
 		}
 
 
+		if(result.size() >0){
+			try {
+				PrintWriter out = new PrintWriter("fragments.txt");
+				for(int i=0; i<result.size(); i++)
+				{
+					out.println(result.get(i));
+
+				}
+				System.out.println("Contents written to fragments.txt file in program directory.");
+				out.close();
+			} 
+			catch (FileNotFoundException e) 
+			{
+				System.out.println("An error occured.. Contents not written to file.");
+
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 	private static String packageFrame(String data, HeaderParams hp)
