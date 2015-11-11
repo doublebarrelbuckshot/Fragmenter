@@ -81,7 +81,7 @@ public class Main {
 					
 					String toPrint = packageFrame(data, hp);
 					result.add(toPrint);
-					System.out.println("Frame: " + toPrint);
+					System.out.println("Frame: " + addSpace(4,toPrint) );
 					if((remainder == 0 ) && (i == numberFrames -1))
 					{
 						hp.setiFlagMF(0);
@@ -103,7 +103,7 @@ public class Main {
 					String data = line.substring(start, start + remainder);
 					String toPrint = packageFrame(data, hp);
 					result.add(toPrint);
-					System.out.println("Frame: " + toPrint);
+					System.out.println("Frame: " + addSpace(4,toPrint) );
 				}
 				//REMOVE ALL SPACES FOR PROCESSING
 				line = in.readLine();
@@ -141,7 +141,7 @@ public class Main {
 	private static String addSpace(int interval, String str){
 		String temp="";
 		for(int i=0; i<str.length();i++){
-			if((interval+1)%4 == 0){
+			if((i+1)%interval == 0){
 				temp+=str.charAt(i)+" ";
 			}
 			else{
