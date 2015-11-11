@@ -57,6 +57,8 @@ public class Main {
 
 			while(line != null)
 			{
+				line = line.replace(" ", "");
+
 				iIdentification++;
 				
 				HeaderParams hp = new HeaderParams(strVersion, strIHL, strDSCPECN, iTotalLength, iIdentification, iFlagReserved, iFlagDF, iFlagMF, iFragmentOffset, strTTL, strProtocol, strChecksum, strSourceIP, strDestinationIP);
@@ -119,7 +121,8 @@ public class Main {
 				PrintWriter out = new PrintWriter("fragments.txt");
 				for(int i=0; i<result.size(); i++)
 				{
-					out.println(result.get(i));
+					String newStr = addSpace(4,result.get(i));
+					out.println(newStr);
 
 				}
 				System.out.println("Contents written to fragments.txt file in program directory.");
@@ -135,6 +138,18 @@ public class Main {
 		}
 	}
 
+	private static String addSpace(int interval, String str){
+		String temp="";
+		for(int i=0; i<str.length();i++){
+			if((interval+1)%4 == 0){
+				temp+=str.charAt(i)+" ";
+			}
+			else{
+				temp+=str.charAt(i);
+			}
+		}
+		return temp;
+	}
 	private static String packageFrame(String data, HeaderParams hp)
 	{
 		String result = "";
